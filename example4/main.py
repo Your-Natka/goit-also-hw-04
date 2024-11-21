@@ -3,11 +3,15 @@ from parser import parse_input
 from commands import execute_command
 
 
-def main(directory):
+def main(directory=None):
     """
-    Основна функція, яка приймає шлях до директорії та реалізує цикл взаємодії з користувачем.
+    Основна функція, яка приймає шлях до директорії (опціонально)
+    та реалізує цикл взаємодії з користувачем.
     """
-    print(f"Welcome to the assistant bot! Working directory: {directory}")
+    if directory:
+        print(f"Welcome to the assistant bot! Working directory: {directory}")
+    else:
+        print("Welcome to the assistant bot!")
     
     while True:
         user_input = input("Enter a command: ").strip()
@@ -24,13 +28,9 @@ def main(directory):
 
 
 if __name__ == "__main__":
-    # Перевірка аргументів командного рядка
-    if len(sys.argv) != 2:
-        print("Використання: python main.py <шлях до директорії>")
-        sys.exit(1)
-
-    # Зчитуємо шлях до директорії
-    directory_path = sys.argv[1]
+    # Якщо аргумент командного рядка передано, використовуємо його
+    directory_path = sys.argv[1] if len(sys.argv) > 1 else None
 
     # Передаємо шлях до функції main
     main(directory_path)
+
