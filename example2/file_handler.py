@@ -1,12 +1,16 @@
-from pathlib import Path
+from cat_utils import parse_cats_data
 
-def read_binary_file(path):
+def get_cats_info(file_path):
     """
-    Зчитує вміст бінарного файлу та повертає його у вигляді рядка.
+    Читає файл із даними про котів і повертає список словників.
     """
-    file_path = Path(path)
-    if not file_path.is_file():
-        raise FileNotFoundError(f"Файл за шляхом {path} не знайдено.")
-    
-    with open(file_path, mode='rb') as file:
-        return file.read().decode('utf-8')
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            return parse_cats_data(content)
+    except FileNotFoundError:
+        print(f"Файл {file_path} не знайдено.")
+        return []
+    except Exception as e:
+        print(f"Сталася помилка: {e}")
+        return []

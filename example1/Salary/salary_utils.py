@@ -21,8 +21,9 @@ def total_salary(path):
         if count == 0:
             raise ValueError("Файл не містить коректних даних про зарплати.")
 
-        average = int(total / count)
+        average = total / count
         return total, average
+    
 
     except FileNotFoundError:
         print(f"Файл за шляхом '{path}' не знайдено.")

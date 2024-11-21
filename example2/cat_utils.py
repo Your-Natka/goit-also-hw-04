@@ -1,6 +1,6 @@
 def parse_cats_data(decoded_content):
     """
-    Парсить текстові дані котів, отримані з файлу, і повертає список словників.
+    Парсить текстові дані котів і повертає список словників.
     """
     cats_info = []
     for line in decoded_content.splitlines():
